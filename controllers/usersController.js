@@ -68,8 +68,8 @@ exports.usersUpdatePost = [
         errors: errors.array(),
       });
     }
-    const {firstName, lastName} = matchedData(req);
-    usersStorage.updateUser(req.params.id, {firstName, lastName});
+    const {firstName, lastName, email, age, bio} = matchedData(req);
+    usersStorage.updateUser(req.params.id, {firstName, lastName, email, age, bio});
     res.redirect('/');
   }
 ]
@@ -78,3 +78,23 @@ exports.usersDeletePost = (req, res) => {
   usersStorage.deleteUser(req.params.id);
   res.redirect('/');
 }
+
+exports.usersSearchGet = (req, res) => {
+  const { name } = req.query;
+
+  let results = [];
+
+  if (name) {
+    const users = usersStorage.getUsers();
+
+    results = users.filter(user =>
+      user.firstName.toLowerCase().includes(name.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(name.toLowerCase())
+    );
+  }
+
+  res.render('search', {
+    name,
+    results,
+  });
+};

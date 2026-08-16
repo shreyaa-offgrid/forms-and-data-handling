@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
+  <title>
+    <%= title %>
+  </title>
 </head>
+
 <body>
-  <h1><%= title %></h1>
+  <h1>
+    <%= title %>
+  </h1>
   <%- include('partials/errors') %>
-  <form action="/<%= user.id %>/update" method="post">
-    <input type="text" name="firstName" value="<%= user.firstName %>" required>
-    <input type="text" name="lastName" value="<%= user.lastName %>" required>
-    <button type="submit">Update User</button>
-  </form>
-  <a href="/">Back to home</a>
+    <form action="/<%= user.id %>/update" method="post">
+      <div style="width: 300px; display:flex; justify-content:space-between">
+        <label for="firstName">* First Name: </label>
+        <input type="text" name="firstName" id="firstName" value="<%= user.firstName %>" required>
+      </div>
+      <div style="width: 300px; display:flex; justify-content:space-between">
+        <label for="lastName">* Last Name: </label>
+        <input type="text" name="lastName" id="lastName" value="<%= user.lastName%>" required>
+      </div>
+      <div style="width: 300px; display:flex; justify-content:space-between">
+        <label for="email">* Email: </label>
+        <input type="text" name="email" id="email" value="<%= user.email %>" required>
+      </div>
+      <div style="width: 300px; display:flex; justify-content:space-between">
+        <label for="age">Age: (optional)</label>
+        <input type="number" name="age" id="age" <% if(user.age){ %>
+        value="<%= user.age %>"
+          <% } %>
+            >
+      </div>
+      <div style="width: 320px; display:flex; justify-content:space-between">
+        <label for="bio">Bio: (optional)</label>
+        <textarea name="bio" id="bio" rows="5" cols="25"><%= user.bio || '' %></textarea>
+      </div>
+      <button type="submit">Update user</button>
+    </form>
+    <a href="/">Back to home</a>
 </body>
+
 </html>

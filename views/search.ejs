@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search User</title>
+</head>
+<body>
+  <form action="/search" method="get">
+    <label for="name">Name: </label>
+    <input type="text" id="name" name="name">
+    <button type="submit">Search</button>
+  </form>
+  <% if (locals.name) { %>
+    <h2>Search results</h2>
+
+    <% if (results.length > 0) { %>
+      <ul>
+        <% results.forEach(user => { %>
+          <li>
+            <%= user.firstName %> <%= user.lastName %> -
+            <%= user.email %>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>No users found.</p>
+    <% } %>
+  <% } %>
+  <a href="/">Back to home</a>
+</body>
+</html>
