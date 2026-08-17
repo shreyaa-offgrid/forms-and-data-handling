@@ -17,23 +17,43 @@
     <form action="/create" method="post" style="display: flex; flex-direction: column; align-items: center; gap:1em;">
       <div style="width: 300px; display:flex; justify-content:space-between">
         <label for="firstName">* First Name: </label>
-        <input type="text" name="firstName" id="firstName" required>
+        <input 
+          type="text" 
+          name="firstName" id="firstName" 
+          value = "<%= user?.firstName || '' %>"
+          required
+        >
       </div>
       <div style="width: 300px; display:flex; justify-content:space-between">
         <label for="lastName">* Last Name: </label>
-        <input type="text" name="lastName" id="lastName" required>
+        <input 
+          type="text" 
+          name="lastName" id="lastName" 
+          value = "<%= user?.lastName || '' %>"
+          required
+        >
       </div>
       <div style="width: 300px; display:flex; justify-content:space-between">
         <label for="email">* Email: </label>
-        <input type="text" name="email" id="email" required>
+        <input 
+          type="text" 
+          name="email" id="email" 
+          value="<%= user?.email || '' %>"
+          required
+        >
       </div>
       <div style="width: 300px; display:flex; justify-content:space-between">
         <label for="age">Age: (optional)</label>
-        <input type="number" name="age" id="age">
+        <input 
+          type="number" 
+          name="age" 
+          id="age"
+          value="<%= user?.age ||  '' %>"
+        >
       </div>
       <div style="width: 320px; display:flex; justify-content:space-between">
         <label for="bio">Bio: (optional)</label>
-        <textarea name="bio" id="bio" rows="5" cols="25"></textarea>
+        <textarea name="bio" id="bio" rows="5" cols="25"><%= user?.bio || '' %></textarea>
       </div>
       <button type="submit">Submit</button>
     </form>

@@ -40,6 +40,7 @@ exports.usersCreatePost = [
       return res.status(400).render('createUser', {
         title: 'Create user',
         errors: errors.array(),
+        user: req.body,
       });
     }
     const {firstName, lastName, email, age, bio} = matchedData(req);
